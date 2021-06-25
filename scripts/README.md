@@ -19,7 +19,7 @@ For he Oxford Covid-19 Government Response Tracker [OxCGRT](https://github.com/O
     * An integer value [0, 10] pointing to the list of available target **indicators**. See the code section and the dataset's interpretation [guide](https://github.com/OxCGRT/covid-policy-tracker/blob/master/documentation/interpretation_guide.md) for more information.  
 
 - **Run:** `python visualize_EU.py -m block -t 2`
-    * The abobe will visualize the dataset for the indicator *C3_Cancel public events* in block mode.
+    * The above will visualize the dataset for the indicator *C3_Cancel public events* in block mode.
 
 ![example output](images/blocks_c3.png)
 Extra
