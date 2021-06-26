@@ -16,7 +16,7 @@ To get started:
 ### Goal 1: Explore the policies adopted by the different European countries, trying to highlight similarities and patterns among them
 >We use the OxCGRT dataset for this. 
 Steps to run:
-- Run the script...[fill this in bro]
+- Run the script...[commands needed]
 - observe ...
 - the images are saved in ....
 - interpret
