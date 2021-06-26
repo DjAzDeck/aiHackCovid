@@ -17,11 +17,18 @@ For he Oxford Covid-19 Government Response Tracker [OxCGRT](https://github.com/O
     * An integer value representing the days between plotted data points. Default: 30 (~1 month)
 - **target**
     * An integer value [0, 10] pointing to the list of available target **indicators**. See the code section and the dataset's interpretation [guide](https://github.com/OxCGRT/covid-policy-tracker/blob/master/documentation/interpretation_guide.md) for more information.  
+- **method**
+    * The method to use for computing the correlation matrix across countries. Methods available: *pearson (Default)*, *kendall*, *spearman*. 
 
 - **Run:** `python visualize_EU.py -m block -t 2`
     * The above will visualize the dataset for the indicator *C3_Cancel public events* in block mode.
 
+OUTPUT
+------
+Two figures, close the first to see the second when run the script.
 ![example output](images/blocks_c3.png)
+![correlation output](images/C3_corr.png)
+
 Extra
 -----
 Only 10 out of 20 indicators were used for this study. The rest can be added and explored by the interested user. 

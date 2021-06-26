@@ -1,4 +1,3 @@
-from numpy import dtype, int64
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -74,6 +73,47 @@ def plot_policy(dataset, target, info, step):
         plt.setp(ax.get_xticklabels(), rotation=90)
         plt.show()
 
+def plot_policy_correlation(dataset, target, info, corr_method):
+    new_ds = pd.DataFrame()
+    corr_matrix = pd.DataFrame()
+    corr_np = list()
+    if info is not True:
+        #Rearange dataset
+        new_ds = dataset.pivot(index='Date', columns='CountryCode', values=target)
+        #Swap nan and empty with 0
+        new_ds.fillna(0, inplace=True)
+        #Calculate correlation matrix
+        corr_matrix = new_ds.corr(method=corr_method)
+        #Plot it
+        fig, axs = plt.subplots(figsize=(15, 12))
+        sns.heatmap(corr_matrix, annot=True)
+        axs.set_title(target)
+        plt.setp(axs.get_yticklabels(), rotation=0)
+        plt.show()
+    else:
+        for i in range(len(dataset)):
+            new_ds = dataset[i].pivot(index='Date', columns='CountryCode', values=target)
+            new_ds.fillna(0, inplace=True)
+            corr_np.append(new_ds.corr(method='pearson'))
+
+        fig, axes = plt.subplots(2, 2, figsize = (14, 14))
+        fig.suptitle('Correlation matrices for the indicator {}'.format(target))
+        sns.heatmap(corr_np[0], annot=True, ax=axes[0,0])
+        axes[0,0].set_title('EU North')
+        plt.setp(axes[0,0].get_yticklabels(), rotation=0, fontsize = 7)
+
+        sns.heatmap(corr_np[1], annot=True, ax=axes[0,1])
+        axes[0,1].set_title('EU South')
+        plt.setp(axes[0,1].get_yticklabels(), rotation=0, fontsize = 7)
+
+        sns.heatmap(corr_np[3], annot=True, ax=axes[1,0])
+        axes[1,0].set_title('EU West')
+        plt.setp(axes[1,0].get_yticklabels(), rotation=0, fontsize = 7)
+        
+        sns.heatmap(corr_np[2], annot=True, ax=axes[1,1])
+        axes[1,1].set_title('EU East')
+        plt.setp(axes[1,1].get_yticklabels(), rotation=0,  fontsize = 7)
+        plt.show() 
 
 if __name__ == "__main__":
 
@@ -81,6 +121,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--mode", default='whole', required=True, help="Mode to visualize: block or whole", type=str)
     parser.add_argument("-t", "--trgt", default=1 , required=False, help="Target variable to use for plot", type=int)
     parser.add_argument("-s", "--step", default=30, required=False, help='Step size to plot (1=day)', type=int)
+    parser.add_argument("-c", "--corr", default='pearson', required=False, help='The method used to define the correlation', type=str)
     args = parser.parse_args()
 
     datasets=[]    
@@ -89,7 +130,7 @@ if __name__ == "__main__":
     oxford_data['Date'] = oxford_data['Date'].apply(preprocess_dates)
     oxford_data = oxford_data.sort_values('Date', ascending=True)
     print("Dataset length: {}".format(oxford_data['Date'].max()-oxford_data['Date'].min()))
-
+    #Create new Datasets
     DIRECTIONAL = [EU_North, EU_South, EU_East, EU_West]
     for direct in DIRECTIONAL:        
         new_dataset = create_country_dataset(oxford_data, direct)
@@ -98,9 +139,9 @@ if __name__ == "__main__":
     if args.mode == 'block':
         #Plot x4 blocks x4 countries
         plot_policy(datasets, TARGETS[args.trgt], True, args.step)
+        plot_policy_correlation(datasets, TARGETS[args.trgt], True, args.corr)
     elif args.mode == 'whole':
         #Plot for all EU Countries
         EU_dataset = create_country_dataset(oxford_data, EU_countries)
         plot_policy(EU_dataset, TARGETS[args.trgt], False, args.step)
-
-    
+        plot_policy_correlation(EU_dataset, TARGETS[args.trgt], False, args.corr)
