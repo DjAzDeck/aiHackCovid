@@ -1,5 +1,5 @@
 # aiHackCovid
-#### This is team 2 submission for the [aiHackCovid](https://aihackcovid.aimedgroningen.com/) hackathon by Bharath Raj, Rosella and Thanasis. 
+#### This is team 2 submission for the [aiHackCovid](https://aihackcovid.aimedgroningen.com/) hackathon by Bharath Raj, Rossella and Thanasis. 
 
 
 ## Our Goals:
