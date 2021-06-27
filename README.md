@@ -32,8 +32,6 @@ Based on the above features we predict the new_deaths_per_million in our predict
 - We do the prediction models for Global scenario [Global_Projection Model.ipynb](https://github.com/DjAzDeck/aiHackCovid/blob/main/Global_Projection%20Model.ipynb)
 - We do the prediction models for Europe scenario [EU_Projection Model.ipynb](https://github.com/DjAzDeck/aiHackCovid/blob/main/EU_Projection%20Model.ipynb)
 - We do the prediction models for NL scenario [NL_Projection Model.ipynb](https://github.com/DjAzDeck/aiHackCovid/blob/main/NL_Projection%20Model.ipynb)
-
-TODO
-----  
-- We create a synthetic dataset for forecasting the new_deaths_per_million using the above models on all the three regions [Creating_synthetic_dataForProjection.ipnyb](https://github.com/DjAzDeck/aiHackCovid/blob/main/Creating_synthetic_dataForProjection.ipynb)    
+- 
+We create a synthetic dataset for forecasting the new_deaths_per_million using the above models on all the three regions [Creating_synthetic_dataForProjection.ipnyb](https://github.com/DjAzDeck/aiHackCovid/blob/main/Creating_synthetic_dataForProjection.ipynb)   
 - We visualize the projections until March 1st 2022 on all the three models and observe their behaviour [Visualisation_and_inference.ipnyb]
